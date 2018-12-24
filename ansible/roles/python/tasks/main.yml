@@ -5,10 +5,9 @@
     - python-pil
     - python-pillow
 - name: upgrade pip
-  pip: name=pip
-  extra_args: --upgrade
-#- name: fix pip
-  #template: src=templates/
+  shell: pip install pip --upgrade
+- name: fix pip
+  template: src=templates/pip dest=/usr/bin/pip mode=0755
 - name: installing modules
   pip: name={{item}} state=present
   with_items:
@@ -22,7 +21,7 @@
     - /srv/base_scripts
     - /srv/base_logs
 - name: copy scripts
-  template: src=template/{{item}} dest=/srv/base_scripts/{{item}}
+  template: src=templates/{{item}} dest=/srv/base_scripts/{{item}}
   with_items:
     - sys_info.py
 

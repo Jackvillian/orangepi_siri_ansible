@@ -1,3 +1,5 @@
 ---
 - name: enable init cron
   service: name=cron enabled=yes
+- name: Checking connection
+  cron: name="check ping" job="ping 10.0.0.1 -c 3"

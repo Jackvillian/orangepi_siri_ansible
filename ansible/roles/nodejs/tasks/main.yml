@@ -4,8 +4,7 @@
 - name: install nodejs
   apt: name=nodejs state=present
 - name: install homebridge packages
-  npm: name={{item}} state=present
-  executable: /usr/bin/npm --unsafe-perm=true --allow-root
+  npm: name={{item}} state=present global=yes
   with_items:
     - homebridge
     - hap-nodejs

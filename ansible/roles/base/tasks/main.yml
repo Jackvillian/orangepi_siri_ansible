@@ -1,4 +1,12 @@
 ---
+- name: updating
+  apt: update_cache=yes
+- name: configure login
+  template: src=templates/login.defs dest=/etc/login.defs mode=0644
+- name: configure ssh
+  template: src=templates/sshd_config dest=/etc/ssh/sshd_config mode=0644
+- name: enable sshd service
+  service: name=ssh enabled=yes
 - name: install base packages
   apt: name={{item}} state=present
   with_items:
@@ -17,6 +25,3 @@
     - avahi-discover
     - libnss-mdns
     - virtualenv
-
-#- name: configure login
-#- name: configure ssh
