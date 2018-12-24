@@ -9,4 +9,5 @@
     - base
     - python
     - nodejs
+    - avr-bridge
     - cron

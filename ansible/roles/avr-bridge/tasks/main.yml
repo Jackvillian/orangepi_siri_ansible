@@ -1,0 +1,9 @@
+---
+- name: installing avr packages
+  apt: name={{item}} state=present
+  with_items:
+    - gcc-avr
+    - avr-libc
+    - avrdude
+- name: installing monitor
+  apt: name=minicom state=present
