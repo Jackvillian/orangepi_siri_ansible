@@ -26,3 +26,8 @@
     - libnss-mdns
     - virtualenv
     - openssl
+- name: Set authorized key taken from file
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
