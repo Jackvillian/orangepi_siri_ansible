@@ -11,3 +11,6 @@
     - nodejs
     - avr-bridge
     - cron
+  post_tasks:
+    - name: reboot
+      shell: init 6
