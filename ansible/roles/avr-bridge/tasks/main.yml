@@ -1,9 +1,8 @@
 ---
-- name: installing avr packages
-  apt: name={{item}} state=present
-  with_items:
-    - gcc-avr
-    - avr-libc
-    - avrdude
+- name: download arduino-cli package
+  unarchive: src=https://downloads.arduino.cc/arduino-cli/arduino-cli-latest-linuxarm.tar.bz2 dest=/usr/bin/arduino-cli
+  remote_src: yes
+- name: set permissions
+  file: path=/usr/bin/arduino-cli owner=root mode=0755
 - name: installing monitor
   apt: name=minicom state=present
