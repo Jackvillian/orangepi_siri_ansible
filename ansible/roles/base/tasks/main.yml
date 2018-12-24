@@ -25,3 +25,4 @@
     - avahi-discover
     - libnss-mdns
     - virtualenv
+    - openssl

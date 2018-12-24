@@ -3,3 +3,5 @@
   service: name=cron enabled=yes
 - name: Checking connection
   cron: name="check ping" job="ping 10.0.0.1 -c 3"
+- name: display info
+  cron: name="display info" job="/usr/bin/python /srv/base_scripts/sys_info.py"
