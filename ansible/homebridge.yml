@@ -1,0 +1,12 @@
+---
+- hosts: orangepi
+  user: root
+  become: yes
+  pre_tasks:
+    - name: install python 2
+      raw: test -e /usr/bin/python || (yum update && yum install -y python2)
+  roles:
+    - base
+    - python
+    - nodejs
+    - cron

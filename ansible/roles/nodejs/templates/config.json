@@ -1,0 +1,33 @@
+{
+"bridge": {
+        "name": "HomeBridge to OPI",
+        "username": "CC:22:3D:E3:CE:32",
+        "port": 51827,
+        "pin": "031-45-155"
+    },
+
+"accessories": [
+	{
+	    "accessory": "CMD",
+     	    "service": "Light",
+	    "brightnessHandling": "no",
+            "name": "лампа",
+            "on_cmd": "/srv/homebridge_scripts/light_on.py",
+            "off_cmd": "/srv/homebridge_scripts/light_off.py",
+	    "get_status_cmd": "/srv/homebridge_scripts/light_state.py"
+	}],
+
+"platforms": [{
+   "platform": "cmdSwitch2",
+   "switches": [{
+       "name" : "вентилятор",
+       "on_cmd": "/srv/homebridge_scripts/spin_on.py",
+       "off_cmd": "/srv/homebridge_scripts/spin_off.py",
+       "state_cmd": "/srv/homebridge_scripts/spin_state.py"
+       "manufacturer": "рога и копыта",
+       "model": "допотопный вращатель",
+       "serial": "шта?"
+   }]
+}]
+
+}

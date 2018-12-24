@@ -1,0 +1,28 @@
+---
+- name: installing deps via apt
+  apt: name={{item}} state=present
+  with_items:
+    - python-pil
+    - python-pillow
+- name: upgrade pip
+  pip: name=pip
+  extra_args: --upgrade
+#- name: fix pip
+  #template: src=templates/
+- name: installing modules
+  pip: name={{item}} state=present
+  with_items:
+    - netifaces
+    - psutil
+    - python-wifi
+    - ssd1306
+- name: create work dirs
+  action: file path={{item}} state=directory
+  with_items:
+    - /srv/base_scripts
+    - /srv/base_logs
+- name: copy scripts
+  template: src=template/{{item}} dest=/srv/base_scripts/{{item}}
+  with_items:
+    - sys_info.py
+

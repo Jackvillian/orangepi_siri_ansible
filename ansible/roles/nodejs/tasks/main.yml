@@ -1,0 +1,29 @@
+---
+- name: install script
+  shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+- name: install nodejs
+  apt: name=nodejs state=present
+- name: install homebridge packages
+  npm: name={{item}} state=present
+  executable: /usr/bin/npm --unsafe-perm=true --allow-root
+  with_items:
+    - homebridge
+    - hap-nodejs
+    - node-gyp
+- name: installing plugins
+  npm: name={{item}} state=present global=yes
+  with_items:
+    - homebridge-cmdswitch2
+    - homebridge-cmd_light_control
+- name: create work dirs
+  action: file path={{item}} state=directory
+  with_items:
+    - /srv/homebridge_scripts
+    - /srv/homebridge_logs
+    - /srv/homebridge_config
+- name: create config file
+  template: src=templates/config.json dest=/srv/homebridge_config/config.json
+- name: create init scripts
+  template: src=templates/init dest=/etc/init.d/homebridge mode=775
+- name: enable init script
+  service: name=homebridge enabled=yes

@@ -1,0 +1,22 @@
+---
+- name: install base packages
+  apt: name={{item}} state=present
+  with_items:
+    - vim
+    - git
+    - curl
+    - clang
+    - gcc
+    - libavahi-compat-libdnssd-dev
+    - python-dev
+    - python-pip
+    - cron
+    - make
+    - g++
+    - avahi-daemon
+    - avahi-discover
+    - libnss-mdns
+    - virtualenv
+
+#- name: configure login
+#- name: configure ssh
